@@ -72,7 +72,7 @@ public class Game
 				Console.WriteLine(_players[_currentPlayer]
 							+ "'s new location is "
 							+ _places[_currentPlayer]);
-				Console.WriteLine("The category is " + CurrentCategory());
+				Console.WriteLine("The category is " + CurrentCategory);
 				AskQuestion();
 			} else {
 				Console.WriteLine(_players[_currentPlayer] + " is not getting out of the penalty box");
@@ -87,71 +87,44 @@ public class Game
 			Console.WriteLine(_players[_currentPlayer]
 						+ "'s new location is "
 						+ _places[_currentPlayer]);
-			Console.WriteLine("The category is " + CurrentCategory());
+			Console.WriteLine("The category is " + CurrentCategory);
 			AskQuestion();
 		}
 	}
 
 	private void AskQuestion()
 	{
-		if (CurrentCategory() == "Pop") {
+		if (CurrentCategory == "Pop") {
 			Console.WriteLine(_popQuestions.First());
 			_popQuestions.RemoveFirst();
 		}
-		if (CurrentCategory() == "Science") {
+		if (CurrentCategory == "Science") {
 			Console.WriteLine(_scienceQuestions.First());
 			_scienceQuestions.RemoveFirst();
 		}
-		if (CurrentCategory() == "Sports") {
+		if (CurrentCategory == "Sports") {
 			Console.WriteLine(_sportsQuestions.First());
 			_sportsQuestions.RemoveFirst();
 		}
-		if (CurrentCategory() == "Rock") {
+		if (CurrentCategory == "Rock") {
 			Console.WriteLine(_rockQuestions.First());
 			_rockQuestions.RemoveFirst();
 		}
 	}
 
-	private string CurrentCategory()
+	private string CurrentCategory => _places[_currentPlayer] switch
 	{
-		if (_places[_currentPlayer] == 0) {
-			return "Pop";
-		}
-
-		if (_places[_currentPlayer] == 4) {
-			return "Pop";
-		}
-
-		if (_places[_currentPlayer] == 8) {
-			return "Pop";
-		}
-
-		if (_places[_currentPlayer] == 1) {
-			return "Science";
-		}
-
-		if (_places[_currentPlayer] == 5) {
-			return "Science";
-		}
-
-		if (_places[_currentPlayer] == 9) {
-			return "Science";
-		}
-
-		if (_places[_currentPlayer] == 2) {
-			return "Sports";
-		}
-
-		if (_places[_currentPlayer] == 6) {
-			return "Sports";
-		}
-
-		if (_places[_currentPlayer] == 10) {
-			return "Sports";
-		}
-
-		return "Rock";
-	}
+		0 => "Pop",
+		4 => "Pop",
+		8 => "Pop",
+		1 => "Science",
+		5 => "Science",
+		9 => "Science",
+		2 => "Sports",
+		6 => "Sports",
+		10 => "Sports",
+		_ => "Rock"
+	};
 
 	public bool WasCorrectlyAnswered()
 	{
