@@ -1,34 +1,29 @@
 ﻿using System;
 
-namespace Trivia
+namespace Trivia;
+
+public class GameRunner
 {
-    public class GameRunner
-    {
-        private static bool _notAWinner;
+	private static bool _notAWinner;
 
-        public static void Main(string[] args)
-        {
-			Game aGame = new();
+	public static void Main(string[] args)
+	{
+		Game aGame = new();
 
-            aGame.Add("Chet");
-            aGame.Add("Pat");
-            aGame.Add("Sue");
+		aGame.Add("Chet");
+		aGame.Add("Pat");
+		aGame.Add("Sue");
 
-			Random rand = new();
+		Random rand = new();
 
-            do
-            {
-                aGame.Roll(rand.Next(5) + 1);
+		do {
+			aGame.Roll(rand.Next(5) + 1);
 
-                if (rand.Next(9) == 7)
-                {
-                    _notAWinner = aGame.WrongAnswer();
-                }
-                else
-                {
-                    _notAWinner = aGame.WasCorrectlyAnswered();
-                }
-            } while (_notAWinner);
-        }
-    }
+			if (rand.Next(9) == 7) {
+				_notAWinner = aGame.WrongAnswer();
+			} else {
+				_notAWinner = aGame.WasCorrectlyAnswered();
+			}
+		} while (_notAWinner);
+	}
 }
