@@ -8,13 +8,13 @@ namespace Trivia
 
         public static void Main(string[] args)
         {
-            var aGame = new Game();
+			Game aGame = new Game();
 
             aGame.Add("Chet");
             aGame.Add("Pat");
             aGame.Add("Sue");
 
-            var rand = new Random();
+			Random rand = new Random();
 
             do
             {

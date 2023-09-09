@@ -23,7 +23,7 @@ namespace Trivia
 
         public Game()
         {
-            for (var i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 _popQuestions.AddLast("Pop Question " + i);
                 _scienceQuestions.AddLast(("Science Question " + i));
@@ -181,7 +181,7 @@ namespace Trivia
                             + _purses[_currentPlayer]
                             + " Gold Coins.");
 
-                    var winner = DidPlayerWin();
+					bool winner = DidPlayerWin();
                     _currentPlayer++;
                     if (_currentPlayer == _players.Count) {
 						_currentPlayer = 0;
@@ -208,7 +208,7 @@ namespace Trivia
                         + _purses[_currentPlayer]
                         + " Gold Coins.");
 
-                var winner = DidPlayerWin();
+				bool winner = DidPlayerWin();
                 _currentPlayer++;
                 if (_currentPlayer == _players.Count) {
 					_currentPlayer = 0;
