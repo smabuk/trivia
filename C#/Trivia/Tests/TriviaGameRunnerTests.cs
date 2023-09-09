@@ -41,14 +41,14 @@ public class TriviaGameRunnerTests
 			Pat's new location is 4
 			The category is Pop
 			Pop Question 1
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Pat now has 1 Gold Coins.
 			Sue is the current player
 			They have rolled a 2
 			Sue's new location is 2
 			The category is Sports
 			Sports Question 0
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 1 Gold Coins.
 			Chet is the current player
 			They have rolled a 5
@@ -63,14 +63,14 @@ public class TriviaGameRunnerTests
 			Pat's new location is 9
 			The category is Science
 			Science Question 1
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Pat now has 2 Gold Coins.
 			Sue is the current player
 			They have rolled a 2
 			Sue's new location is 4
 			The category is Pop
 			Pop Question 2
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 2 Gold Coins.
 			Chet is the current player
 			They have rolled a 4
@@ -80,14 +80,14 @@ public class TriviaGameRunnerTests
 			Pat's new location is 2
 			The category is Sports
 			Sports Question 1
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Pat now has 3 Gold Coins.
 			Sue is the current player
 			They have rolled a 5
 			Sue's new location is 9
 			The category is Science
 			Science Question 2
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 3 Gold Coins.
 			Chet is the current player
 			They have rolled a 4
@@ -104,7 +104,7 @@ public class TriviaGameRunnerTests
 			Sue's new location is 2
 			The category is Sports
 			Sports Question 2
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 4 Gold Coins.
 			Chet is the current player
 			They have rolled a 4
@@ -122,7 +122,7 @@ public class TriviaGameRunnerTests
 			Sue's new location is 5
 			The category is Science
 			Science Question 3
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 5 Gold Coins.
 			Chet is the current player
 			They have rolled a 1
@@ -140,7 +140,7 @@ public class TriviaGameRunnerTests
 			Sue's new location is 9
 			The category is Science
 			Science Question 4
-			Answer was corrent!!!!
+			Answer was correct!!!!
 			Sue now has 6 Gold Coins.
 			
 			""";

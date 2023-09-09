@@ -153,7 +153,7 @@ public class Game
 				return true;
 			}
 		} else {
-			Console.WriteLine("Answer was corrent!!!!");
+			Console.WriteLine("Answer was correct!!!!");
 			_purses[_currentPlayer]++;
 			Console.WriteLine(_players[_currentPlayer]
 					+ " now has "
