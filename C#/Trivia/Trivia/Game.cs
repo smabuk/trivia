@@ -20,10 +20,10 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_popQuestions.AddLast("Pop Question " + i);
-			_scienceQuestions.AddLast(("Science Question " + i));
-			_sportsQuestions.AddLast(("Sports Question " + i));
-			_rockQuestions.AddLast(CreateRockQuestion(i));
+			_ = _popQuestions.AddLast("Pop Question " + i);
+			_ = _scienceQuestions.AddLast(("Science Question " + i));
+			_ = _sportsQuestions.AddLast(("Sports Question " + i));
+			_ = _rockQuestions.AddLast(CreateRockQuestion(i));
 		}
 	}
 

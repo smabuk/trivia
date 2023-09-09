@@ -8,9 +8,9 @@ public class GameRunner
 	{
 		Game aGame = new();
 
-		aGame.Add("Chet");
-		aGame.Add("Pat");
-		aGame.Add("Sue");
+		_ = aGame.Add("Chet");
+		_ = aGame.Add("Pat");
+		_ = aGame.Add("Sue");
 
 		Random rand = new();
 
