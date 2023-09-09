@@ -20,16 +20,16 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_ = _popQuestions.AddLast("Pop Question " + i);
-			_ = _scienceQuestions.AddLast(("Science Question " + i));
-			_ = _sportsQuestions.AddLast(("Sports Question " + i));
+			_ = _popQuestions.AddLast($"Pop Question {i}");
+			_ = _scienceQuestions.AddLast($"Science Question {i}");
+			_ = _sportsQuestions.AddLast($"Sports Question {i}");
 			_ = _rockQuestions.AddLast(CreateRockQuestion(i));
 		}
 	}
 
 	public string CreateRockQuestion(int index)
 	{
-		return "Rock Question " + index;
+		return $"Rock Question {index}";
 	}
 
 	public bool IsPlayable()
@@ -44,8 +44,8 @@ public class Game
 		_purses[HowManyPlayers()] = 0;
 		_inPenaltyBox[HowManyPlayers()] = false;
 
-		Console.WriteLine(playerName + " was added");
-		Console.WriteLine("They are player number " + _players.Count);
+		Console.WriteLine($"{playerName} was added");
+		Console.WriteLine($"They are player number {_players.Count}");
 		return true;
 	}
 
@@ -56,23 +56,21 @@ public class Game
 
 	public void Roll(int roll)
 	{
-		Console.WriteLine(_players[_currentPlayer] + " is the current player");
-		Console.WriteLine("They have rolled a " + roll);
+		Console.WriteLine($"{_players[_currentPlayer]} is the current player");
+		Console.WriteLine($"They have rolled a {roll}");
 
 		if (_inPenaltyBox[_currentPlayer]) {
 			if (roll % 2 != 0) {
 				_isGettingOutOfPenaltyBox = true;
 
-				Console.WriteLine(_players[_currentPlayer] + " is getting out of the penalty box");
+				Console.WriteLine($"{_players[_currentPlayer]} is getting out of the penalty box");
 				_places[_currentPlayer] = _places[_currentPlayer] + roll;
 				if (_places[_currentPlayer] > 11) {
 					_places[_currentPlayer] = _places[_currentPlayer] - 12;
 				}
 
-				Console.WriteLine(_players[_currentPlayer]
-							+ "'s new location is "
-							+ _places[_currentPlayer]);
-				Console.WriteLine("The category is " + CurrentCategory);
+				Console.WriteLine($"{_players[_currentPlayer]}'s new location is {_places[_currentPlayer]}");
+				Console.WriteLine($"The category is {CurrentCategory}");
 				AskQuestion();
 			} else {
 				Console.WriteLine(_players[_currentPlayer] + " is not getting out of the penalty box");
@@ -84,10 +82,8 @@ public class Game
 				_places[_currentPlayer] = _places[_currentPlayer] - 12;
 			}
 
-			Console.WriteLine(_players[_currentPlayer]
-						+ "'s new location is "
-						+ _places[_currentPlayer]);
-			Console.WriteLine("The category is " + CurrentCategory);
+			Console.WriteLine($"{_players[_currentPlayer]}'s new location is {_places[_currentPlayer]}");
+			Console.WriteLine($"The category is {CurrentCategory}");
 			AskQuestion();
 		}
 	}
@@ -132,10 +128,7 @@ public class Game
 			if (_isGettingOutOfPenaltyBox) {
 				Console.WriteLine("Answer was correct!!!!");
 				_purses[_currentPlayer]++;
-				Console.WriteLine(_players[_currentPlayer]
-						+ " now has "
-						+ _purses[_currentPlayer]
-						+ " Gold Coins.");
+				Console.WriteLine($"{_players[_currentPlayer]} now has {_purses[_currentPlayer]} Gold Coins.");
 
 				bool winner = DidPlayerWin();
 				_currentPlayer++;
@@ -155,10 +148,7 @@ public class Game
 		} else {
 			Console.WriteLine("Answer was correct!!!!");
 			_purses[_currentPlayer]++;
-			Console.WriteLine(_players[_currentPlayer]
-					+ " now has "
-					+ _purses[_currentPlayer]
-					+ " Gold Coins.");
+			Console.WriteLine($"{_players[_currentPlayer]} now has {_purses[_currentPlayer]} Gold Coins.");
 
 			bool winner = DidPlayerWin();
 			_currentPlayer++;
@@ -173,7 +163,7 @@ public class Game
 	public bool WrongAnswer()
 	{
 		Console.WriteLine("Question was incorrectly answered");
-		Console.WriteLine(_players[_currentPlayer] + " was sent to the penalty box");
+		Console.WriteLine($"{_players[_currentPlayer]} was sent to the penalty box");
 		_inPenaltyBox[_currentPlayer] = true;
 
 		_currentPlayer++;
