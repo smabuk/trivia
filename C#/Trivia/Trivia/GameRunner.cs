@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Trivia;
+﻿namespace Trivia;
 
 public class GameRunner
 {
