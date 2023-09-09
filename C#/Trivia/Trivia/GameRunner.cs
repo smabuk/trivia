@@ -1,25 +1,17 @@
-﻿namespace Trivia;
+﻿bool _notAWinner;
 
-public class GameRunner
-{
-	private static bool _notAWinner;
+Game aGame = new();
 
-	public static void Main(string[] args)
-	{
-		Game aGame = new();
+_ = aGame.Add("Chet");
+_ = aGame.Add("Pat");
+_ = aGame.Add("Sue");
 
-		_ = aGame.Add("Chet");
-		_ = aGame.Add("Pat");
-		_ = aGame.Add("Sue");
+Random rand = new();
 
-		Random rand = new();
+do {
+	aGame.Roll(rand.Next(5) + 1);
 
-		do {
-			aGame.Roll(rand.Next(5) + 1);
-
-			_notAWinner = (rand.Next(9) == 7)
-				? aGame.WrongAnswer()
-				: aGame.WasCorrectlyAnswered();
-		} while (_notAWinner);
-	}
-}
+	_notAWinner = (rand.Next(9) == 7)
+		? aGame.WrongAnswer()
+		: aGame.WasCorrectlyAnswered();
+} while (_notAWinner);
