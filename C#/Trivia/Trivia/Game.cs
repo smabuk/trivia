@@ -27,15 +27,9 @@ public class Game
 		}
 	}
 
-	public string CreateRockQuestion(int index)
-	{
-		return $"Rock Question {index}";
-	}
+	public string CreateRockQuestion(int index) => $"Rock Question {index}";
 
-	public bool IsPlayable()
-	{
-		return (HowManyPlayers() >= 2);
-	}
+	public bool IsPlayable() => (HowManyPlayers() >= 2);
 
 	public bool Add(string playerName)
 	{
@@ -49,10 +43,7 @@ public class Game
 		return true;
 	}
 
-	public int HowManyPlayers()
-	{
-		return _players.Count;
-	}
+	public int HowManyPlayers() => _players.Count;
 
 	public void Roll(int roll)
 	{
@@ -175,8 +166,5 @@ public class Game
 	}
 
 
-	private bool DidPlayerWin()
-	{
-		return !(_purses[_currentPlayer] == 6);
-	}
+	private bool DidPlayerWin() => !(_purses[_currentPlayer] == 6);
 }
