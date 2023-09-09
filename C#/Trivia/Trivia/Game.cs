@@ -29,7 +29,7 @@ public class Game
 
 	public string CreateRockQuestion(int index) => $"Rock Question {index}";
 
-	public bool IsPlayable() => (HowManyPlayers() >= 2);
+	public bool IsPlayable() => HowManyPlayers() >= 2;
 
 	public bool Add(string playerName)
 	{
