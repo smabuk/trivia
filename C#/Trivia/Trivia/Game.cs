@@ -20,14 +20,12 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_popQuestions.Enqueue(CreateQuestion("Pop", i));
-			_scienceQuestions.Enqueue(CreateQuestion("Science", i));
-			_sportsQuestions.Enqueue(CreateQuestion("Sports", i));
-			_rockQuestions.Enqueue(CreateQuestion("Rock", i));
+			_popQuestions.Enqueue(Helpers.CreateQuestion("Pop", i));
+			_scienceQuestions.Enqueue(Helpers.CreateQuestion("Science", i));
+			_sportsQuestions.Enqueue(Helpers.CreateQuestion("Sports", i));
+			_rockQuestions.Enqueue(Helpers.CreateQuestion("Rock", i));
 		}
 	}
-
-	public static string CreateQuestion(string category, int index) => $"{category} Question {index}";
 
 	public bool IsPlayable() => HowManyPlayers() >= 2;
 
@@ -92,19 +90,7 @@ public class Game
 		Console.WriteLine(question);
 	}
 
-	private string CurrentCategory => _places[_currentPlayer] switch
-	{
-		0 => "Pop",
-		4 => "Pop",
-		8 => "Pop",
-		1 => "Science",
-		5 => "Science",
-		9 => "Science",
-		2 => "Sports",
-		6 => "Sports",
-		10 => "Sports",
-		_ => "Rock"
-	};
+	private string CurrentCategory => Helpers.PlaceCategory(_places[_currentPlayer]);
 
 	public bool WasCorrectlyAnswered()
 	{
