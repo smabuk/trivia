@@ -9,10 +9,10 @@ public class Game
 
 	private readonly bool[] _inPenaltyBox = new bool[6];
 
-	private readonly LinkedList<string> _popQuestions = new();
-	private readonly LinkedList<string> _scienceQuestions = new();
-	private readonly LinkedList<string> _sportsQuestions = new();
-	private readonly LinkedList<string> _rockQuestions = new();
+	private readonly Queue<string> _popQuestions = new();
+	private readonly Queue<string> _scienceQuestions = new();
+	private readonly Queue<string> _sportsQuestions = new();
+	private readonly Queue<string> _rockQuestions = new();
 
 	private int _currentPlayer;
 	private bool _isGettingOutOfPenaltyBox;
@@ -20,10 +20,10 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_ = _popQuestions.AddLast(CreateQuestion("Pop", i));
-			_ = _scienceQuestions.AddLast(CreateQuestion("Science", i));
-			_ = _sportsQuestions.AddLast(CreateQuestion("Sports", i));
-			_ = _rockQuestions.AddLast(CreateQuestion("Rock", i));
+			_popQuestions.Enqueue(CreateQuestion("Pop", i));
+			_scienceQuestions.Enqueue(CreateQuestion("Science", i));
+			_sportsQuestions.Enqueue(CreateQuestion("Sports", i));
+			_rockQuestions.Enqueue(CreateQuestion("Rock", i));
 		}
 	}
 
@@ -81,22 +81,15 @@ public class Game
 
 	private void AskQuestion()
 	{
-		if (CurrentCategory == "Pop") {
-			Console.WriteLine(_popQuestions.First());
-			_popQuestions.RemoveFirst();
-		}
-		if (CurrentCategory == "Science") {
-			Console.WriteLine(_scienceQuestions.First());
-			_scienceQuestions.RemoveFirst();
-		}
-		if (CurrentCategory == "Sports") {
-			Console.WriteLine(_sportsQuestions.First());
-			_sportsQuestions.RemoveFirst();
-		}
-		if (CurrentCategory == "Rock") {
-			Console.WriteLine(_rockQuestions.First());
-			_rockQuestions.RemoveFirst();
-		}
+		string question = CurrentCategory switch
+		{
+			"Pop"     => _popQuestions.Dequeue(),
+			"Science" => _scienceQuestions.Dequeue(),
+			"Sports"  => _sportsQuestions.Dequeue(),
+			"Rock"    => _rockQuestions.Dequeue(),
+			_ => throw new NotImplementedException(),
+		};
+		Console.WriteLine(question);
 	}
 
 	private string CurrentCategory => _places[_currentPlayer] switch
