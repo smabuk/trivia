@@ -2,7 +2,6 @@
 public static class Helpers
 {
 	public static string CreateQuestion(string category, int index) => $"{category} Question {index}";
-
 	public static string PlaceCategory(int place)
 	{
 		return place switch

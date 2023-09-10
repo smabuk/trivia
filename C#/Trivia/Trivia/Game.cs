@@ -86,7 +86,6 @@ public class Game
 		Console.WriteLine(question);
 	}
 
-	private string CurrentCategory => Helpers.PlaceCategory(GetCurrentPlayer().Place);
 
 	public bool WasCorrectlyAnswered()
 	{
@@ -98,17 +97,11 @@ public class Game
 				Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
 				bool winner = DidPlayerWin();
-				_currentPlayer++;
-				if (_currentPlayer == _players.Count) {
-					_currentPlayer = 0;
-				}
+				NextPlayer();
 
 				return winner;
 			} else {
-				_currentPlayer++;
-				if (_currentPlayer == _players.Count) {
-					_currentPlayer = 0;
-				}
+				NextPlayer();
 
 				return true;
 			}
@@ -118,10 +111,7 @@ public class Game
 			Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
 			bool winner = DidPlayerWin();
-			_currentPlayer++;
-			if (_currentPlayer == _players.Count) {
-				_currentPlayer = 0;
-			}
+			NextPlayer();
 
 			return winner;
 		}
@@ -134,14 +124,14 @@ public class Game
 		Console.WriteLine($"{currentPlayer.Name} was sent to the penalty box");
 		GetCurrentPlayer().InPenaltyBox = true;
 
-		_currentPlayer++;
-		if (_currentPlayer == _players.Count) {
-			_currentPlayer = 0;
-		}
+		NextPlayer();
 
 		return true;
 	}
 
+	private string CurrentCategory => Helpers.PlaceCategory(GetCurrentPlayer().Place);
+
+	void NextPlayer() => _currentPlayer = (_currentPlayer + 1 == HowManyPlayers()) ? 0 : _currentPlayer + 1;
 
 	private bool DidPlayerWin() => !(GetCurrentPlayer().Purse == 6);
 }
