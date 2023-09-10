@@ -20,14 +20,14 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_ = _popQuestions.AddLast($"Pop Question {i}");
-			_ = _scienceQuestions.AddLast($"Science Question {i}");
-			_ = _sportsQuestions.AddLast($"Sports Question {i}");
-			_ = _rockQuestions.AddLast(CreateRockQuestion(i));
+			_ = _popQuestions.AddLast(CreateQuestion("Pop", i));
+			_ = _scienceQuestions.AddLast(CreateQuestion("Science", i));
+			_ = _sportsQuestions.AddLast(CreateQuestion("Sports", i));
+			_ = _rockQuestions.AddLast(CreateQuestion("Rock", i));
 		}
 	}
 
-	public string CreateRockQuestion(int index) => $"Rock Question {index}";
+	public static string CreateQuestion(string category, int index) => $"{category} Question {index}";
 
 	public bool IsPlayable() => HowManyPlayers() >= 2;
 
