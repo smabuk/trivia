@@ -55,8 +55,8 @@ public class TriviaGameTests
 			aGame.Roll(rand.Next(5) + 1);
 
 			notAWinner = (rand.Next(9) == 7)
-				? aGame.WrongAnswer()
-				: aGame.WasCorrectlyAnswered();
+				? !aGame.WrongAnswer()
+				: !aGame.WasCorrectlyAnswered();
 		} while (notAWinner);
 
 		Console.SetOut(consoleOut);

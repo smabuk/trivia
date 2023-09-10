@@ -12,6 +12,6 @@ do {
 	aGame.Roll(rand.Next(5) + 1);
 
 	_notAWinner = (rand.Next(9) == 7)
-		? aGame.WrongAnswer()
-		: aGame.WasCorrectlyAnswered();
+		? !aGame.WrongAnswer()
+		: !aGame.WasCorrectlyAnswered();
 } while (_notAWinner);

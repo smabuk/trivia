@@ -97,7 +97,7 @@ public class Game
 			} else {
 				NextPlayer();
 
-				return true;
+				return false;
 			}
 		} else {
 			Console.WriteLine("Answer was correct!!!!");
@@ -116,16 +116,16 @@ public class Game
 		Player currentPlayer = GetCurrentPlayer();
 		Console.WriteLine("Question was incorrectly answered");
 		Console.WriteLine($"{currentPlayer.Name} was sent to the penalty box");
-		GetCurrentPlayer().InPenaltyBox = true;
+		currentPlayer.InPenaltyBox = true;
 
 		NextPlayer();
 
-		return true;
+		return false;
 	}
 
 	private string CurrentCategory => PlaceCategory(GetCurrentPlayer().Place);
 
 	void NextPlayer() => _currentPlayer = (_currentPlayer + 1 == HowManyPlayers()) ? 0 : _currentPlayer + 1;
 
-	private bool DidPlayerWin() => !(GetCurrentPlayer().Purse == 6);
+	private bool DidPlayerWin() => (GetCurrentPlayer().Purse == 6);
 }
