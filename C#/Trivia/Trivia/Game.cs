@@ -4,10 +4,10 @@ public class Game
 {
 	private readonly List<Player> _players = new();
 
-	private readonly Queue<string> _popQuestions = new();
+	private readonly Queue<string> _popQuestions     = new();
 	private readonly Queue<string> _scienceQuestions = new();
-	private readonly Queue<string> _sportsQuestions = new();
-	private readonly Queue<string> _rockQuestions = new();
+	private readonly Queue<string> _sportsQuestions  = new();
+	private readonly Queue<string> _rockQuestions    = new();
 
 	private int _currentPlayer;
 	private bool _isGettingOutOfPenaltyBox;
@@ -16,10 +16,10 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_popQuestions.Enqueue(Helpers.CreateQuestion("Pop", i));
+			_popQuestions    .Enqueue(Helpers.CreateQuestion("Pop",     i));
 			_scienceQuestions.Enqueue(Helpers.CreateQuestion("Science", i));
-			_sportsQuestions.Enqueue(Helpers.CreateQuestion("Sports", i));
-			_rockQuestions.Enqueue(Helpers.CreateQuestion("Rock", i));
+			_sportsQuestions .Enqueue(Helpers.CreateQuestion("Sports",  i));
+			_rockQuestions   .Enqueue(Helpers.CreateQuestion("Rock",    i));
 		}
 	}
 
@@ -49,10 +49,7 @@ public class Game
 				_isGettingOutOfPenaltyBox = true;
 
 				Console.WriteLine($"{currentPlayer.Name} is getting out of the penalty box");
-				currentPlayer.Place += roll;
-				if (currentPlayer.Place > 11) {
-					currentPlayer.Place -= 12;
-				}
+				currentPlayer.NextPlace(roll);
 
 				Console.WriteLine($"{currentPlayer.Name}'s new location is {currentPlayer.Place}");
 				Console.WriteLine($"The category is {CurrentCategory}");
@@ -62,10 +59,7 @@ public class Game
 				_isGettingOutOfPenaltyBox = false;
 			}
 		} else {
-			currentPlayer.Place += roll;
-			if (currentPlayer.Place > 11) {
-				currentPlayer.Place -= 12;
-			}
+			currentPlayer.NextPlace(roll);
 
 			Console.WriteLine($"{currentPlayer.Name}'s new location is {currentPlayer.Place}");
 			Console.WriteLine($"The category is {CurrentCategory}");
