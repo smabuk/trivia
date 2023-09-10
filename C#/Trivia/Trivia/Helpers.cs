@@ -18,5 +18,6 @@ public static class Helpers
 			_ => "Rock"
 		};
 	}
+	public static bool IsEven(this int roll) => (roll % 2 != 0);
 
 }

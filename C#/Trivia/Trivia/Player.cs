@@ -5,6 +5,8 @@ public class Player
 	public int Place { get; private set; } = 0;
 	public int Purse { get; private set; } = 0;
 	public bool InPenaltyBox { get; set; } = false;
+	public bool IsGettingOutOfPenaltyBox { get; set; } = false;
+
 
 	public void IncrementPurse() => Purse++;
 	public void NextPlace(int placesToMove)
