@@ -87,7 +87,7 @@ public class Game
 		if (currentPlayer.InPenaltyBox) {
 			if (_isGettingOutOfPenaltyBox) {
 				Console.WriteLine("Answer was correct!!!!");
-				currentPlayer.Purse++;
+				currentPlayer.IncrementPurse();
 				Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
 				bool winner = DidPlayerWin();
@@ -101,7 +101,7 @@ public class Game
 			}
 		} else {
 			Console.WriteLine("Answer was correct!!!!");
-			currentPlayer.Purse++;
+			currentPlayer.IncrementPurse();
 			Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
 			bool winner = DidPlayerWin();
