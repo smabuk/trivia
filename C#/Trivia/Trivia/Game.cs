@@ -16,10 +16,10 @@ public class Game
 	public Game()
 	{
 		for (int i = 0; i < 50; i++) {
-			_popQuestions    .Enqueue(Helpers.CreateQuestion("Pop",     i));
-			_scienceQuestions.Enqueue(Helpers.CreateQuestion("Science", i));
-			_sportsQuestions .Enqueue(Helpers.CreateQuestion("Sports",  i));
-			_rockQuestions   .Enqueue(Helpers.CreateQuestion("Rock",    i));
+			_popQuestions    .Enqueue(CreateQuestion("Pop",     i));
+			_scienceQuestions.Enqueue(CreateQuestion("Science", i));
+			_sportsQuestions .Enqueue(CreateQuestion("Sports",  i));
+			_rockQuestions   .Enqueue(CreateQuestion("Rock",    i));
 		}
 	}
 
@@ -123,7 +123,7 @@ public class Game
 		return true;
 	}
 
-	private string CurrentCategory => Helpers.PlaceCategory(GetCurrentPlayer().Place);
+	private string CurrentCategory => PlaceCategory(GetCurrentPlayer().Place);
 
 	void NextPlayer() => _currentPlayer = (_currentPlayer + 1 == HowManyPlayers()) ? 0 : _currentPlayer + 1;
 
