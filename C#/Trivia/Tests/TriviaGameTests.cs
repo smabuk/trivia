@@ -17,6 +17,7 @@ public class TriviaGameTests
 	[InlineData(2)]
 	[InlineData(3)]
 	[InlineData(4)]
+	[InlineData(5)]
 	public void Game_ShouldBe_Playable(int count)
 	{
 		Game aGame = new();
