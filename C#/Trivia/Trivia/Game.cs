@@ -10,7 +10,13 @@ public class Game
 	private readonly Queue<string> _rockQuestions    = new();
 
 	private int _currentPlayerIndex;
-	private Player GetCurrentPlayer() => _players[_currentPlayerIndex];
+	
+	private string CurrentCategory => PlaceCategory(CurrentPlayer.Place);
+	private Player CurrentPlayer => _players[_currentPlayerIndex];
+	private bool DidCurrentPlayerWin() => (CurrentPlayer.Purse == 6);
+	private int HowManyPlayers() => _players.Count;
+	private void NextPlayer() => _currentPlayerIndex = (_currentPlayerIndex + 1 == HowManyPlayers()) ? 0 : _currentPlayerIndex + 1;
+	public bool IsPlayable() => HowManyPlayers() >= 2;
 
 	public Game()
 	{
@@ -22,9 +28,7 @@ public class Game
 		}
 	}
 
-	public bool IsPlayable() => HowManyPlayers() >= 2;
-
-	public bool Add(string playerName)
+	public bool AddPlayer(string playerName)
 	{
 		Player player = new() { Name = playerName };
 		_players.Add(player);
@@ -34,11 +38,9 @@ public class Game
 		return true;
 	}
 
-	public int HowManyPlayers() => _players.Count;
-
 	public void Roll(int roll)
 	{
-		Player currentPlayer = GetCurrentPlayer();
+		Player currentPlayer = CurrentPlayer;
 
 		Console.WriteLine($"{currentPlayer.Name} is the current player");
 		Console.WriteLine($"They have rolled a {roll}");
@@ -48,21 +50,22 @@ public class Game
 				currentPlayer.IsGettingOutOfPenaltyBox = true;
 
 				Console.WriteLine($"{currentPlayer.Name} is getting out of the penalty box");
-				currentPlayer.NextPlace(roll);
-
-				Console.WriteLine($"{currentPlayer.Name}'s new location is {currentPlayer.Place}");
-				Console.WriteLine($"The category is {CurrentCategory}");
+				MoveToNextPlace(roll, currentPlayer);
 				AskQuestion();
 			} else {
 				Console.WriteLine($"{currentPlayer.Name} is not getting out of the penalty box");
 				currentPlayer.IsGettingOutOfPenaltyBox = false;
 			}
 		} else {
-			currentPlayer.NextPlace(roll);
+			MoveToNextPlace(roll, currentPlayer);
+			AskQuestion();
+		}
 
+		void MoveToNextPlace(int roll, Player currentPlayer)
+		{
+			currentPlayer.NextPlace(roll);
 			Console.WriteLine($"{currentPlayer.Name}'s new location is {currentPlayer.Place}");
 			Console.WriteLine($"The category is {CurrentCategory}");
-			AskQuestion();
 		}
 	}
 
@@ -85,17 +88,17 @@ public class Game
 	/// <returns>True if the player won, otherwise false</returns>
 	public bool WasCorrectlyAnswered()
 	{
-		Player currentPlayer = GetCurrentPlayer();
+		Player currentPlayer = CurrentPlayer;
 		if (currentPlayer.InPenaltyBox) {
 			if (currentPlayer.IsGettingOutOfPenaltyBox) {
 				Console.WriteLine("Answer was correct!!!!");
 				currentPlayer.IncrementPurse();
 				Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
-				bool winner = DidPlayerWin();
+				bool isCurrentPlayerTheWinner = DidCurrentPlayerWin();
 				NextPlayer();
 
-				return winner;
+				return isCurrentPlayerTheWinner;
 			} else {
 				NextPlayer();
 
@@ -106,10 +109,10 @@ public class Game
 			currentPlayer.IncrementPurse();
 			Console.WriteLine($"{currentPlayer.Name} now has {currentPlayer.Purse} Gold Coins.");
 
-			bool winner = DidPlayerWin();
+			bool isCurrentPlayerTheWinner = DidCurrentPlayerWin();
 			NextPlayer();
 
-			return winner;
+			return isCurrentPlayerTheWinner;
 		}
 	}
 
@@ -119,7 +122,7 @@ public class Game
 	/// <returns>False as the player got the question wrong and therefore did not win</returns>
 	public bool WrongAnswer()
 	{
-		Player currentPlayer = GetCurrentPlayer();
+		Player currentPlayer = CurrentPlayer;
 		Console.WriteLine("Question was incorrectly answered");
 		Console.WriteLine($"{currentPlayer.Name} was sent to the penalty box");
 		currentPlayer.InPenaltyBox = true;
@@ -128,9 +131,4 @@ public class Game
 
 		return false;
 	}
-
-	private string CurrentCategory => PlaceCategory(GetCurrentPlayer().Place);
-
-	void NextPlayer() => _currentPlayerIndex = (_currentPlayerIndex + 1 == HowManyPlayers()) ? 0 : _currentPlayerIndex + 1;
-	private bool DidPlayerWin() => (GetCurrentPlayer().Purse == 6);
 }

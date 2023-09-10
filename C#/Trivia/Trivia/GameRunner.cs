@@ -2,9 +2,9 @@
 
 Game aGame = new();
 
-_ = aGame.Add("Chet");
-_ = aGame.Add("Pat");
-_ = aGame.Add("Sue");
+_ = aGame.AddPlayer("Chet");
+_ = aGame.AddPlayer("Pat");
+_ = aGame.AddPlayer("Sue");
 
 Random rand = new();
 

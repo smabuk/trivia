@@ -8,7 +8,7 @@ public class TriviaGameTests
 	{
 		Game aGame = new();
 
-		_ = aGame.Add("Player1");
+		_ = aGame.AddPlayer("Player1");
 
 		aGame.IsPlayable().ShouldBeFalse();
 	}
@@ -23,7 +23,7 @@ public class TriviaGameTests
 		Game aGame = new();
 
 		for (int i = 0; i < count; i++) {
-			_ = aGame.Add($"Player{count}");
+			_ = aGame.AddPlayer($"Player{count}");
 		}
 
 		aGame.IsPlayable().ShouldBeTrue();
@@ -35,9 +35,9 @@ public class TriviaGameTests
 		bool notAWinner;
 		Game aGame = new();
 
-		_ = aGame.Add("Chet");
-		_ = aGame.Add("Pat");
-		_ = aGame.Add("Sue");
+		_ = aGame.AddPlayer("Chet");
+		_ = aGame.AddPlayer("Pat");
+		_ = aGame.AddPlayer("Sue");
 
 		Random rand = new(0);
 
